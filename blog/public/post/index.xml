@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 人工知能は推理小説を読むか</title>
+    <link>http://your-site-here/post/</link>
+    <description>Recent content in Posts on 人工知能は推理小説を読むか</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Oct 2018 03:14:19 +0000</lastBuildDate>
+    <atom:link href="/post/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>aaaaaaaaaa</title>
+      <link>http://your-site-here/post/2018/10/hoge-hoge/</link>
+      <pubDate>Sat, 13 Oct 2018 03:14:19 +0000</pubDate>
+      
+      <guid>http://your-site-here/post/2018/10/hoge-hoge/</guid>
+      <description>hoge huga hoge
+huga hoge
+hoge edit hogehoge</description>
+    </item>
+    
+    <item>
+      <title>Hello Hugo!</title>
+      <link>http://your-site-here/post/2016/05/hello-hugo/</link>
+      <pubDate>Sat, 30 Apr 2016 16:44:45 +0900</pubDate>
+      
+      <guid>http://your-site-here/post/2016/05/hello-hugo/</guid>
+      <description>Hello Hugo!
+hoge huga 以下のような式となる
+$$ x = \alpha$$
+ただし、$\alpha$は、学習率を表す。</description>
+    </item>
+    
+    <item>
+      <title>Hello Hugo!</title>
+      <link>http://your-site-here/post/2016/05/hello-hugo/</link>
+      <pubDate>Sat, 30 Apr 2016 16:44:45 +0900</pubDate>
+      
+      <guid>http://your-site-here/post/2016/05/hello-hugo/</guid>
+      <description> Hello Hugo!
+hoge huga $$\alpha$$
+apt-get
+def hoge(): print()  huga
+ hoge hoge  </description>
+    </item>
+    
+  </channel>
+</rss>

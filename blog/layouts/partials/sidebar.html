@@ -1,0 +1,119 @@
+<div class="sidebar">
+  {{ with .Site.Params.adsense.sidebar }}
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Sponsored link</span>
+    </div>
+    <div class="adsense">
+      {{ partial . }}
+    </div>
+  </div>
+  {{ end }}
+  {{ if .Site.Author }}
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <p><span>{{ .Site.Author.name }}</span></p>
+      <p><span>{{ .Site.Author.onething }}</span></p>
+      <div>
+        {{ with .Site.Author.twitter }}
+        <a href="https://twitter.com/{{ . }}"><i class="fa fa-twitter-square fa-2x" aria-hidden="true" target="_black"></i></a>
+        {{ end }}
+        {{ with .Site.Author.github }}
+        <a href="https://github.com/{{ . }}"><i class="fa fa-github-square fa-2x" aria-hidden="true" target="_black"></i></a>
+        {{ end }}
+        {{ with .Site.Author.linkedin }}
+        <a href="https://www.linkedin.com/in/{{ . }}"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true" target="_black"></i></a>
+        {{ end }}
+        {{ with .Site.Author.tumblr }}
+        <a href="https://{{ . }}.tumblr.com/"><i class="fa fa-tumblr-square fa-2x" aria-hidden="true" target="_black"></i></a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <!-- {{ with .Site.Taxonomies.categories }} -->
+  <!-- <div class="sidebar-content"> -->
+  <!--   <div class="sidebar-header"> -->
+  <!--     <span>Tags</span> -->
+  <!--   </div> -->
+  <!--   <div class="categories"> -->
+  <!--     <ul> -->
+  <!--       {{ range $category, $taxonomy := . }} -->
+  <!--       <li> -->
+  <!--         <a href="{{ "/categories/" | relURL }}{{ $category | urlize }}"><span></span>{{ $category }} ({{ $taxonomy.Count }})</a> -->
+  <!--       </li> -->
+  <!--       {{ end }} -->
+  <!--     </ul> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <!-- {{ end }} -->
+  
+  {{ with .Site.Taxonomies.tags }}
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        {{ range $tags, $taxonomy := . }}
+	
+        <li>	  
+	  {{ if and (lt 0 $taxonomy.Count) (le $taxonomy.Count 5) }}
+	  <a href="{{ "/tags/" | relURL }}{{ $tags | urlize }}" style="font-size: medium;"><span></span> {{ $tags }} </a>
+	  {{end}}
+	  
+	  {{ if and (lt 5 $taxonomy.Count) (le $taxonomy.Count 10) }}
+	  <a href="{{ "/tags/" | relURL }}{{ $tags | urlize }}" style="font-size: large;"><span></span> {{ $tags }} </a>
+	  {{end}}
+	  
+	  {{ if and (lt 10 $taxonomy.Count) (le $taxonomy.Count 20) }}
+	  <a href="{{ "/tags/" | relURL }}{{ $tags | urlize }}" style="font-size: large;"><span></span> {{ $tags }} </a>
+	  {{end}}
+	  
+	  {{ if and (lt 20 $taxonomy.Count) }}
+	  <a href="{{ "/tags/" | relURL }}{{ $tags | urlize }}" style="font-size: xx-large;"><span></span>{{ $tags }}</a>
+	  {{end}}
+
+        </li>
+	
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+  {{ end }}
+
+  
+  <!-- {{ if .Site.Params.featured_tags }} -->
+  <!-- <section> -->
+  <!--     <hr class="hidden-sm hidden-xs"> -->
+  <!--     <h5>FEATURED TAGS</h5> -->
+  <!--     <div class="tags"> -->
+  <!--       {{ $featured_condition_size := .Site.Params.featured_condition_size }}  -->
+  <!--       {{ range $name, $taxonomy := .Site.Taxonomies.tags }} -->
+  <!--       {{ if gt (len $taxonomy.Pages) $featured_condition_size }}  -->
+  <!--       <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="{{ $name }}"> -->
+  <!--         {{ $name }} -->
+  <!--       </a> -->
+  <!--       {{ end }}  -->
+  <!-- 	{{ end }} -->
+  <!--     </div> -->
+  <!-- </section> -->
+  <!-- {{end}} -->
+
+
+  
+  <!-- <div class="sidebar-content"> -->
+  <!--   <div class="sidebar-header"> -->
+  <!--     <span>RSS</span> -->
+  <!--   </div> -->
+  <!--   <div id="rss"> -->
+  <!--     <a href="{{ or .RSSLink .Site.RSSLink }}" type="application/rss+xml" target="_blank"> -->
+  <!--       <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i> -->
+  <!--     </a> -->
+  <!--   </div> -->
+  <!-- </div> -->
+</div>

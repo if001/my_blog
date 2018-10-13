@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on 人工知能は推理小説を読むか</title>
+    <link>http://your-site-here/tags/hugo/</link>
+    <description>Recent content in Hugo on 人工知能は推理小説を読むか</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Apr 2016 16:44:45 +0900</lastBuildDate>
+    <atom:link href="/tags/hugo/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hello Hugo!</title>
+      <link>http://your-site-here/post/2016/05/hello-hugo/</link>
+      <pubDate>Sat, 30 Apr 2016 16:44:45 +0900</pubDate>
+      
+      <guid>http://your-site-here/post/2016/05/hello-hugo/</guid>
+      <description> Hello Hugo!
+hoge huga $$\alpha$$
+apt-get
+def hoge(): print()  huga
+ hoge hoge  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+version: '2'
+services:
+  hugo-api-server:
+    build: .
+    volumes:
+      - ./api:/work/api
+      - ./blog:/work/blog
+    ports:
+      - "8000:8000"
+    # command: bash
+    working_dir: /work/api
+    # tty : true
+
+  frontend:
+    image: nginx:1.15.5-alpine
+    ports:
+      - "8888:80"
+    volumes:
+      - ./blog/public:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    tty : true
+

@@ -1,0 +1,39 @@
+baseurl = "http://your-site-here/"
+languageCode = "en-us"
+title = "人工知能は推理小説を読むか"
+theme= "hugo-theme-geppaku"
+googleAnalytics = ""
+disqusShortname = ""
+
+[author]
+    # If you want to display author information set these
+    # This is Optional values
+    name = "いふ"
+    onething = "hogehoge"
+    # Please set account ids
+    # This is Optional values
+    twitter  = "if_004"
+    # linkedin = "your linkedin id"
+    github   = "if001"
+    # tumblr   = "your tumblr id"
+
+[params]
+    [params.sharebutton]
+        # If you want to display share buttons set these
+        # This is Optional values
+        twitter  = true
+        facebook = true
+        tumblr   = false
+        hatena   = true # hatena is Japanese social media
+        google   = false
+        pocket   = true
+        # Please set id when you want to display facebook
+        # facebookAppId = "your app id"
+
+    [params.adsense]
+        # If you want to display Google adsense set these
+        # This is Optional values
+        # 1. Create file written of the adsense tag into the directory "layouts/partials"
+        # 2. Please set file path name omitted "layouts/partials"
+        # sidebar = "adsense/sidebar.html"
+        # content = "adsense/content.html"

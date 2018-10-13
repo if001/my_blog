@@ -1,0 +1,29 @@
+        </div><!-- #main-->
+        {{ partial "sidebar.html" . }}
+      </div><!-- .container -->
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              {{ if .Site.Copyright }}
+              {{ .Site.Copyright | markdownify}}
+              {{ else }}
+              Copyright (c) {{ .Site.LastChange.Format "2006" }}, <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+              {{ end }}
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div><!-- #wrap -->
+</body>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+    });
+</script>
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</html>
+
+
