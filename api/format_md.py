@@ -3,6 +3,9 @@ import os
 import re
 import subprocess
 
+base_dir = "/work/blog/"
+create_dir = "content/post"
+
 
 class FormatMd():
     def __header(self, time, draft, title, slug, tags):
@@ -22,9 +25,6 @@ tags = {}
 
 
 class CreateMd():
-    base_dir = "/Users/issei/prog/go_lang/my_blog/"
-    create_dir = "blog/content/post"
-
     def test_create(self):
         print("test create")
         res = self.create("Title title!", ["tag1", "tag2"], "body", True)
@@ -39,7 +39,7 @@ class CreateMd():
         now = datetime.datetime.now()
         # 日付からディレクトリを生成
         md_dir = os.path.join(
-            CreateMd.base_dir, CreateMd.create_dir, self.__dirStr(now))
+            base_dir, create_dir, self.__dirStr(now))
 
         # # ディレクトリの存在確認 なければ作成
         # if not(os.path.exists(md_dir)):
@@ -56,7 +56,7 @@ class CreateMd():
         # mdの作成
         cmd = 'hugo new ' + \
             os.path.join("post", self.__dirStr(now), md_file_name) + "--log"
-        cwd = os.path.join(CreateMd.base_dir, "blog")
+        cwd = os.path.join(base_dir, "blog")
         res = subprocess.call(cmd.split(), cwd=cwd)
 
         if res == 0:
