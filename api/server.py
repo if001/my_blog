@@ -29,7 +29,7 @@ class Build(object):
         # todo ビルドに失敗したらエラーリスポンスを返す
         if res == 0:
             resp.body = to_resp(200, "ok")
-        if res == 0:
+        if res == 1:
             resp.body = to_resp(500, "build error")
 
 
