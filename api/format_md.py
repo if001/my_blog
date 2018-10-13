@@ -56,7 +56,7 @@ class CreateMd():
         # mdの作成
         cmd = 'hugo new ' + \
             os.path.join("post", self.__dirStr(now), md_file_name) + "--log"
-        cwd = os.path.join(base_dir, "blog")
+        cwd = os.path.join(base_dir)
         res = subprocess.call(cmd.split(), cwd=cwd)
 
         if res == 0:
