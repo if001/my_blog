@@ -1,3 +1,12 @@
+"""
+python3 md_article_request.py target.md
+
+md format is 
+title=title
+tags=tag1,tag2
+body
+"""
+
 import urllib.request
 import json
 import sys

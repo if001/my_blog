@@ -7,8 +7,8 @@ services:
       - ./blog:/work/blog
     ports:
       - "8000:8000"
-    # command: bash
     working_dir: /work/api
+    command: python3 -u server.py
     # tty : true
 
   frontend:
