@@ -4,7 +4,8 @@ from format_md import CreateMd
 import os
 import subprocess
 
-base_dir = "/Users/issei/prog/go_lang/my_blog/"
+# base_dir = "/Users/issei/prog/go_lang/my_blog/"
+base_dir = "/work/blog/my_blog/"
 
 
 def to_resp(status_code, contents):
