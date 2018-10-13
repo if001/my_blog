@@ -24,7 +24,7 @@ class HealthCheck(object):
 class Build(object):
     def on_get(self, req, resp):
         cmd = 'hugo'
-        cwd = os.path.join(base_dir, "blog")
+        cwd = os.path.join(base_dir)
         res = subprocess.call(cmd.split(), cwd=cwd)
         # todo ビルドに失敗したらエラーリスポンスを返す
         if res == 0:
