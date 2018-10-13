@@ -1,6 +1,6 @@
-baseurl = "http://your-site-here/"
+baseurl = "http://35.221.100.217/"
 languageCode = "en-us"
-title = "人工知能は推理小説を読むか"
+title = "アンドロイドは推理小説を読むか"
 theme= "hugo-theme-geppaku"
 googleAnalytics = ""
 disqusShortname = ""
@@ -9,7 +9,7 @@ disqusShortname = ""
     # If you want to display author information set these
     # This is Optional values
     name = "いふ"
-    onething = "hogehoge"
+    onething = ""
     # Please set account ids
     # This is Optional values
     twitter  = "if_004"

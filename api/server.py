@@ -4,7 +4,7 @@ from format_md import CreateMd
 import os
 import subprocess
 
-# base_dir = "/Users/issei/prog/go_lang/my_blog/"
+# base_dir = "/Users/issei/prog/go_lang/my_blog/blog"
 base_dir = "/work/blog/"
 
 
@@ -25,11 +25,12 @@ class Build(object):
     def on_get(self, req, resp):
         cmd = 'hugo'
         cwd = os.path.join(base_dir)
-        res = subprocess.call(cmd.split(), cwd=cwd)
+
         # todo ビルドに失敗したらエラーリスポンスを返す
-        if res == 0:
-            resp.body = to_resp(200, "ok")
-        if res == 1:
+        try:
+            res = subprocess.check_call(cmd.split(), cwd=cwd)
+            resp.body = to_resp(200, str(res))
+        except subprocess.CalledProcessError:
             resp.body = to_resp(500, "build error")
 
 
