@@ -47,8 +47,8 @@ class CreateMd():
         # slug = self.__to_slug(title)
         md_file_name = slug + ".md"
 
-        md_str = FormatMd().format(now, draft, title, slug, tags, body)
-        print("md_str:", md_str.encode('utf-8'))
+        md_str = FormatMd().format(now, draft, title, slug, tags, body).encode('utf-8')
+        print("md_str:", md_str)
 
         # mdの作成
         cmd = 'hugo new ' + \
