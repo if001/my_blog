@@ -9,4 +9,4 @@ RUN apt install -y python3-pip
 RUN pip3 install falcon
 
 WORKDIR /work/api
-CMD ["python3","-u","server.py"]
+CMD ["python3","-u","server.py","-m","prob"]

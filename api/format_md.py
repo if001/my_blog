@@ -23,6 +23,9 @@ tags = {}
 
 
 class CreateMd():
+    def __init__(self, conf):
+        self.conf = conf
+
     def test_create(self):
         print("test create")
         res = self.create("Title title!", "title", [
@@ -38,7 +41,7 @@ class CreateMd():
         now = datetime.datetime.now()
         # 日付からディレクトリを生成
         md_dir = os.path.join(
-            Conf.base_dir, Conf.create_dir, self.__dirStr(now))
+            self.conf.base_dir, self.conf.create_dir, self.__dirStr(now))
 
         # # slug(url)の作成
         # slug = self.__to_slug(title)
@@ -50,7 +53,7 @@ class CreateMd():
         # mdの作成
         cmd = 'hugo new ' + \
             os.path.join("post", self.__dirStr(now), md_file_name) + "--log"
-        cwd = os.path.join(Conf.base_dir)
+        cwd = os.path.join(self.conf.base_dir)
         res = subprocess.call(cmd.split(), cwd=cwd)
 
         if res == 0:

@@ -7,8 +7,13 @@ import os
 import subprocess
 import base64
 from conf import Conf
+import argparse
+
 
 TOKEN = "aG9nZWhvZ2U=".encode('utf-8')
+BASE_DIR = ""
+CREATE_DIR = ""
+CREATEMD = None
 
 
 class CORSMiddleware:
@@ -37,7 +42,6 @@ def to_resp(status_code, contents):
 #             status.HTTP_200, status_code, contents)
 
 def check_token(req, resp, resource, params):
-    print("hugahuga")
     params = req.params
     if 'password' not in params.keys():
         raise falcon.HTTPBadRequest('Token not found', "")
@@ -58,7 +62,7 @@ class HealthCheck(object):
 class Build(object):
     def on_get(self, req, resp):
         cmd = 'hugo'
-        cwd = os.path.join(Conf.base_dir)
+        cwd = os.path.join(BASE_DIR)
 
         # todo ビルドに失敗したらエラーリスポンスを返す
         try:
@@ -92,7 +96,7 @@ class AddArticle(object):
         title, slug, tags, body = article_article_parse(req)
         # todo tagのフォーマットが間違っていたら、エラーリスポンスを返す
         tags_str = to_array(tags)
-        CreateMd().create(title, slug, tags_str, body, draft="false")
+        CREATEMD.create(title, slug, tags_str, body, draft="false")
         resp.body = to_resp(200, "create article")
 
 
@@ -100,7 +104,7 @@ class AddArticle(object):
 class AddDraftArticle(object):
     def on_post(self, req, resp):
         title, slug, tags, body = article_article_parse(req)
-        CreateMd().create(title, slug, tags, body, draft="true")
+        CREATEMD.create(title, slug, tags, body, draft="true")
         resp.body = to_resp(200, "create draft article")
 
 
@@ -118,8 +122,16 @@ app.add_sink(handle_404, '')
 
 if __name__ == "__main__":
     from wsgiref import simple_server
+    parser = argparse.ArgumentParser(description='api server for hugo')
+    parser.add_argument('--mode', '-m', type=str, required=True)
+    args = parser.parse_args()
+
     print("start server")
-    host = os.getenv("HOST", "0.0.0.0")
-    port = os.getenv("PORT", 8000)
-    httpd = simple_server.make_server(host, port, app)
+    print("server mode " + args.mode)
+    conf = Conf(args.mode)
+    CREATEMD = CreateMd(conf)
+
+    BASE_DIR = conf.base_dir
+    CREATE_DIR = conf.create_dir
+    httpd = simple_server.make_server(conf.host, conf.port, app)
     httpd.serve_forever()

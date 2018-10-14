@@ -9,7 +9,7 @@ disqusShortname = ""
     # If you want to display author information set these
     # This is Optional values
     name = "いふ"
-    onething = ""
+    onething = "自然言語処理を中心に記事を書いていきます。最終的には、AIに小説を書かせたい。"
     # Please set account ids
     # This is Optional values
     twitter  = "if_004"
