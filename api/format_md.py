@@ -57,7 +57,7 @@ class CreateMd():
         res = subprocess.call(cmd.split(), cwd=cwd)
 
         if res == 0:
-            with open(os.path.join(md_dir, md_file_name), "w") as f:
+            with open(os.path.join(md_dir, md_file_name), "w", encoding='utf-8') as f:
                 f.writelines(md_str)
         return md_str
 
