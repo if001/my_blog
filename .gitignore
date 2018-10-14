@@ -1,2 +1,5 @@
 api/__pycache__
 !blog/public/.gitkeep
+
+blog/content/post/
+!blog/content/post/.gitkeep
