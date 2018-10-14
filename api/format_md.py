@@ -39,7 +39,8 @@ class CreateMd():
 
     def befor_create(self, date_dir, md_file_name):
         # ファイルが存在していれば削除して作り直す
-        md_path = os.path.join(self.conf.base_dir, date_dir, md_file_name)
+        md_path = os.path.join(
+            self.conf.base_dir, self.conf.create_dir, date_dir, md_file_name)
         print(md_path)
         print(os.path.exists(md_path))
         if os.path.exists(md_path):
