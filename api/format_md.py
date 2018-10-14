@@ -37,6 +37,13 @@ class CreateMd():
         print("test dir")
         print(self.__dirStr(now))
 
+    def befor_create(self, date_dir, md_file_name):
+        # ファイルが存在していれば削除して作り直す
+        md_path = os.path.json(self.conf.base_dir, date_dir, md_file_name)
+        if os.path.exists(md_path):
+            os.remove(md_path)
+            print("remove "md_path)
+
     def create(self, title, slug, tags, body, draft):
         now = datetime.datetime.now()
         # 日付からディレクトリを生成
@@ -51,6 +58,7 @@ class CreateMd():
         print("md_str:", md_str.encode('utf-8'))
 
         # mdの作成
+        self.befor_create(self.__dirStr(now), md_file_name)
         cmd = 'hugo new ' + \
             os.path.join("post", self.__dirStr(now), md_file_name)
         cwd = os.path.join(self.conf.base_dir)
