@@ -33,12 +33,14 @@ class Requester():
 
     def post(self, uri, json_data):
         url = self.gen_url(uri)
+        print("repuest to " + url)
         request = urllib.request.Request(
             url, data=json_data, method="POST", headers=self.headers)
         return request
 
     def get(self, uri):
         url = self.gen_url(uri)
+        print("repuest to " + url)
         request = urllib.request.Request(
             url, method="GET", headers=self.headers)
         return request
@@ -70,14 +72,14 @@ def request_md(requester, file_name):
 
     with urllib.request.urlopen(request) as response:
         response_body = response.read().decode("utf-8")
-        print(response_body)
+        print("response:", response_body)
 
 
 def build_request(requester):
     request = requester.get("/build")
     with urllib.request.urlopen(request) as response:
         response_body = response.read().decode("utf-8")
-        print(response_body)
+        print("response:", response_body)
 
 
 def main():

@@ -14,8 +14,7 @@ class Conf():
         elif mode == "dev":
             self.base_dir = "/Users/issei/prog/go_lang/my_blog/blog"
             self.create_dir = "content/post"
-            self.host = "127.0.0.1"
+            self.host = "0.0.0.0"
             self.port = 8000
-
         else:
             raise ValueError("invalid mode")
