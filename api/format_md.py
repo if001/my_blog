@@ -2,9 +2,7 @@ import datetime
 import os
 import re
 import subprocess
-
-base_dir = "/work/blog/"
-create_dir = "content/post"
+from conf import Conf
 
 
 class FormatMd():
@@ -27,7 +25,8 @@ tags = {}
 class CreateMd():
     def test_create(self):
         print("test create")
-        res = self.create("Title title!", ["tag1", "tag2"], "body", True)
+        res = self.create("Title title!", "title", [
+                          "tag1", "tag2"], "body", True)
         print(res)
 
     def test_dir(self):
@@ -35,19 +34,14 @@ class CreateMd():
         print("test dir")
         print(self.__dirStr(now))
 
-    def create(self, title, tags, body, draft):
+    def create(self, title, slug, tags, body, draft):
         now = datetime.datetime.now()
         # 日付からディレクトリを生成
         md_dir = os.path.join(
-            base_dir, create_dir, self.__dirStr(now))
+            Conf.base_dir, Conf.create_dir, self.__dirStr(now))
 
-        # # ディレクトリの存在確認 なければ作成
-        # if not(os.path.exists(md_dir)):
-        #     os.makedirs(md_dir)
-        #     print("create " + md_dir)
-
-        # slug(url)の作成
-        slug = self.__to_slug(title)
+        # # slug(url)の作成
+        # slug = self.__to_slug(title)
         md_file_name = slug + ".md"
 
         md_str = FormatMd().format(now, draft, title, slug, tags, body)
@@ -56,7 +50,7 @@ class CreateMd():
         # mdの作成
         cmd = 'hugo new ' + \
             os.path.join("post", self.__dirStr(now), md_file_name) + "--log"
-        cwd = os.path.join(base_dir)
+        cwd = os.path.join(Conf.base_dir)
         res = subprocess.call(cmd.split(), cwd=cwd)
 
         if res == 0:

@@ -6,9 +6,8 @@ from format_md import CreateMd
 import os
 import subprocess
 import base64
+from conf import Conf
 
-# base_dir = "/Users/issei/prog/go_lang/my_blog/blog"
-base_dir = "/work/blog/"
 TOKEN = "aG9nZWhvZ2U=".encode('utf-8')
 
 
@@ -38,6 +37,7 @@ def to_resp(status_code, contents):
 #             status.HTTP_200, status_code, contents)
 
 def check_token(req, resp, resource, params):
+    print("hugahuga")
     params = req.params
     if 'password' not in params.keys():
         raise falcon.HTTPBadRequest('Token not found', "")
@@ -58,7 +58,7 @@ class HealthCheck(object):
 class Build(object):
     def on_get(self, req, resp):
         cmd = 'hugo'
-        cwd = os.path.join(base_dir)
+        cwd = os.path.join(Conf.base_dir)
 
         # todo ビルドに失敗したらエラーリスポンスを返す
         try:
@@ -72,9 +72,10 @@ def article_article_parse(req):
     body = req.stream.read().decode("utf-8")
     data = json.loads(body)
     title = data['title']
+    slug = data['slug']
     tags = data['tags']
     article_body = data['body']
-    return title, tags, article_body
+    return title, slug, tags, article_body
 
 
 def to_array(st):
@@ -88,18 +89,18 @@ def to_array(st):
 @falcon.before(check_token)
 class AddArticle(object):
     def on_post(self, req, resp):
-        title, tags, body = article_article_parse(req)
+        title, slug, tags, body = article_article_parse(req)
         # todo tagのフォーマットが間違っていたら、エラーリスポンスを返す
         tags_str = to_array(tags)
-        CreateMd().create(title, tags_str, body, draft="false")
+        CreateMd().create(title, slug, tags_str, body, draft="false")
         resp.body = to_resp(200, "create article")
 
 
 @falcon.before(check_token)
 class AddDraftArticle(object):
     def on_post(self, req, resp):
-        title, tags, body = article_article_parse(req)
-        CreateMd().create(title, tags, body, draft="true")
+        title, slug, tags, body = article_article_parse(req)
+        CreateMd().create(title, slug, tags, body, draft="true")
         resp.body = to_resp(200, "create draft article")
 
 
@@ -118,7 +119,8 @@ app.add_sink(handle_404, '')
 if __name__ == "__main__":
     from wsgiref import simple_server
     print("start server")
-    host = os.getenv("HOST", "0.0.0.0")
+    # host = os.getenv("HOST", "0.0.0.0")
+    host = os.getenv("HOST", "127.0.0.1")
     port = os.getenv("PORT", 8000)
     httpd = simple_server.make_server(host, port, app)
     httpd.serve_forever()

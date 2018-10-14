@@ -12,14 +12,35 @@ import json
 import sys
 import re
 import json
+import argparse
 
-
-host = "127.0.0.1"
-host = "35.221.100.217"
-port = "8000"
-url = "http://" + host + ":" + port
-headers = {'content-type': 'application/json'}
 # headers = {'content-type': 'application/x-www-form-urlencoded'}
+
+
+class Requester():
+    def __init__(self, token):
+        self.host = "127.0.0.1"
+        # self.host = "35.221.100.217"
+        # self.host = "www.if-blog.site"
+        self.port = "8000"
+        self.base_url = "http://" + self.host + ":" + self.port
+        self.headers = {'content-type': 'application/json'}
+        self.token = token
+
+    def gen_url(self, uri):
+        return self.base_url + uri + "?password=" + self.token
+
+    def post(self, uri, json_data):
+        url = self.gen_url(uri)
+        request = urllib.request.Request(
+            url, data=json_data, method="POST", headers=self.headers)
+        return request
+
+    def get(self, uri):
+        url = self.gen_url(uri)
+        request = urllib.request.Request(
+            url, method="GET", headers=self.headers)
+        return request
 
 
 def get_param(key, line):
@@ -32,39 +53,44 @@ def get_param(key, line):
         raise ValueError("key must be set!!")
 
 
-def request_md(file_name):
+def request_md(requester, file_name):
     with open(file_name, 'r') as f:
         lines = f.readlines()
     title = get_param('title', lines[0])
-    tags = get_param('tag', lines[1])
-    body = "".join(lines[2:])
-    json_data = json.dumps({'title': title, 'tags': tags,
+    slug = get_param('slug', lines[1])
+    tags = get_param('tag', lines[2])
+    body = "".join(lines[3:])
+    json_data = json.dumps({'title': title,
+                            'slug': slug,
+                            'tags': tags,
                             'body': body}).encode("utf-8")
     print(json_data)
-    post_url = url + "/article"
-    request = urllib.request.Request(
-        post_url, data=json_data, method="POST", headers=headers)
+    request = requester.post("/article", json_data)
+
     with urllib.request.urlopen(request) as response:
         response_body = response.read().decode("utf-8")
         print(response_body)
 
 
-def build_request():
-    post_url = url + "/"
-    request = urllib.request.Request(
-        post_url, method="GET", headers=headers)
+def build_request(requester):
+    request = requester.get("/build")
     with urllib.request.urlopen(request) as response:
         response_body = response.read().decode("utf-8")
         print(response_body)
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("invalid argument")
-        exit(-1)
-    file_name = sys.argv[-1]
-    request_md(file_name)
-    build_request()
+    parser = argparse.ArgumentParser(description='hugo request')
+    parser.add_argument('--token', '-t', type=str, required=True)
+    parser.add_argument('--source', '-s', type=str, default="none")
+    args = parser.parse_args()
+
+    requester = Requester(args.token)
+    if args.source == "none":
+        build_request(requester)
+    else:
+        request_md(requester, args.source)
+        build_request(requester)
 
 
 if __name__ == "__main__":
