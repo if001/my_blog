@@ -3,6 +3,7 @@ python3 md_article_request.py target.md
 
 md format is 
 title=title
+slug=slug
 tags=tag1,tag2
 body
 """
