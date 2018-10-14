@@ -13,7 +13,9 @@ import sys
 import re
 import json
 
+
 host = "127.0.0.1"
+host = "35.221.100.217"
 port = "8000"
 url = "http://" + host + ":" + port
 headers = {'content-type': 'application/json'}
@@ -47,12 +49,22 @@ def request_md(file_name):
         print(response_body)
 
 
+def build_request():
+    post_url = url + "/"
+    request = urllib.request.Request(
+        post_url, method="GET", headers=headers)
+    with urllib.request.urlopen(request) as response:
+        response_body = response.read().decode("utf-8")
+        print(response_body)
+
+
 def main():
     if len(sys.argv) != 2:
         print("invalid argument")
         exit(-1)
     file_name = sys.argv[-1]
     request_md(file_name)
+    build_request()
 
 
 if __name__ == "__main__":

@@ -1,11 +1,20 @@
 import json
 import falcon
+from falcon.http_error import HTTPError
+import falcon.status_codes as status
 from format_md import CreateMd
 import os
 import subprocess
+import base64
 
 # base_dir = "/Users/issei/prog/go_lang/my_blog/blog"
 base_dir = "/work/blog/"
+TOKEN = "aG9nZWhvZ2U=".encode('utf-8')
+
+
+class CORSMiddleware:
+    def process_request(self, req, resp):
+        resp.set_header('Access-Control-Allow-Origin', '*')
 
 
 def to_resp(status_code, contents):
@@ -16,11 +25,35 @@ def to_resp(status_code, contents):
     return json.dumps(resp)
 
 
+# class MyHTTPError(Exception):
+#     def __init__(self, status, status_code, contents=None):
+#         self.status = status
+#         self.status_code = status_code
+#         self.contents = contents
+
+
+# class BadAuthToken(MyHTTPError):
+#     def __init__(self, status_code, contents):
+#         super(BadAuthToken, self).__init__(
+#             status.HTTP_200, status_code, contents)
+
+
+def check_token(req, resp, resource, params):
+    params = req.params
+    password = params['password']
+    enc_token = base64.b64encode(password.encode('utf-8'))
+    if enc_token != TOKEN:
+        raise falcon.HTTPBadRequest('Invalid Token', "")
+        # raise BadAuthToken("200", "invalid token")
+
+
+@falcon.before(check_token)
 class HealthCheck(object):
     def on_get(self, req, resp):
         resp.body = to_resp(200, "ok")
 
 
+@falcon.before(check_token)
 class Build(object):
     def on_get(self, req, resp):
         cmd = 'hugo'
@@ -51,6 +84,7 @@ def to_array(st):
         return [tmp]
 
 
+@falcon.before(check_token)
 class AddArticle(object):
     def on_post(self, req, resp):
         title, tags, body = article_article_parse(req)
@@ -60,6 +94,7 @@ class AddArticle(object):
         resp.body = to_resp(200, "create article")
 
 
+@falcon.before(check_token)
 class AddDraftArticle(object):
     def on_post(self, req, resp):
         title, tags, body = article_article_parse(req)
@@ -71,7 +106,7 @@ def handle_404(req, resp):
     resp.body = to_resp(400, "not found end point")
 
 
-app = falcon.API()
+app = falcon.API(middleware=[CORSMiddleware()])
 app.add_route("/", HealthCheck())
 app.add_route("/build", Build())
 app.add_route("/article", AddArticle())
