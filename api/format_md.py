@@ -44,7 +44,7 @@ class CreateMd():
         print(os.path.exists(md_path))
         if os.path.exists(md_path):
             os.remove(md_path)
-            print("remove "md_path)
+            print("remove " + md_path)
 
     def create(self, title, slug, tags, body, draft):
         now = datetime.datetime.now()
