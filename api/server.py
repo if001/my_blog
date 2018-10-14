@@ -37,9 +37,10 @@ def to_resp(status_code, contents):
 #         super(BadAuthToken, self).__init__(
 #             status.HTTP_200, status_code, contents)
 
-
 def check_token(req, resp, resource, params):
     params = req.params
+    if 'password' not in params.keys():
+        raise falcon.HTTPBadRequest('Token not found', "")
     password = params['password']
     enc_token = base64.b64encode(password.encode('utf-8'))
     if enc_token != TOKEN:
