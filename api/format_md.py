@@ -40,6 +40,8 @@ class CreateMd():
     def befor_create(self, date_dir, md_file_name):
         # ファイルが存在していれば削除して作り直す
         md_path = os.path.json(self.conf.base_dir, date_dir, md_file_name)
+        print(md_path)
+        print(os.path.exists(md_path))
         if os.path.exists(md_path):
             os.remove(md_path)
             print("remove "md_path)
