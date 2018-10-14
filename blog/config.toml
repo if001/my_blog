@@ -1,6 +1,6 @@
 baseurl = "http://if-blog.site/"
 languageCode = "en-us"
-title = "アンドロイドは推理小説を読むか"
+title = "アンドロイドは推理小説を描くか?"
 theme= "hugo-theme-geppaku"
 googleAnalytics = ""
 disqusShortname = ""
