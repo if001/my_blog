@@ -47,12 +47,12 @@ class CreateMd():
         # slug = self.__to_slug(title)
         md_file_name = slug + ".md"
 
-        md_str = FormatMd().format(now, draft, title, slug, tags, body).encode('utf-8')
-        print("md_str:", md_str)
+        md_str = FormatMd().format(now, draft, title, slug, tags, body)
+        print("md_str:", md_str.encode('utf-8'))
 
         # mdの作成
         cmd = 'hugo new ' + \
-            os.path.join("post", self.__dirStr(now), md_file_name) + "--log"
+            os.path.join("post", self.__dirStr(now), md_file_name)
         cwd = os.path.join(self.conf.base_dir)
         res = subprocess.call(cmd.split(), cwd=cwd)
 
