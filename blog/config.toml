@@ -1,4 +1,4 @@
-baseurl = "http://if-blog.site/"
+baseurl = "http://www.if-blog.site"
 languageCode = "en-us"
 title = "アンドロイドは推理小説を描くか?"
 theme= "hugo-theme-geppaku"
