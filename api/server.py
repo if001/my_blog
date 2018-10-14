@@ -119,8 +119,7 @@ app.add_sink(handle_404, '')
 if __name__ == "__main__":
     from wsgiref import simple_server
     print("start server")
-    # host = os.getenv("HOST", "0.0.0.0")
-    host = os.getenv("HOST", "127.0.0.1")
+    host = os.getenv("HOST", "0.0.0.0")
     port = os.getenv("PORT", 8000)
     httpd = simple_server.make_server(host, port, app)
     httpd.serve_forever()
