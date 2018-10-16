@@ -68,7 +68,8 @@ def get_param(key, line):
 def get_images(body):
     figure_line = list()
     for b in body.split("\n"):
-        if "figure src=" in b:
+        # 先頭にスラッシュがあるとエスケープ
+        if ("figure src=" in b) and (b[0] != "\\"):
             figure_line.append(b)
 
     images = list()
@@ -104,7 +105,7 @@ def request_md(requester, file_name, draft_flag):
                 print(response.text)
         except IOError:
             print("image open error " + img)
-    exit(0)
+
     if draft_flag == "false":
         response = requester.post("/article", json_data)
     elif draft_flag == "true":
