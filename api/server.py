@@ -63,9 +63,8 @@ class HealthCheck(object):
 @falcon.before(check_token)
 class Build(object):
     def on_get(self, req, resp):
-        cmd = 'hugo'
+        cmd = 'hugo -t hugo-theme-geppaku'
         cwd = os.path.join(BASE_DIR)
-
         # todo ビルドに失敗したらエラーリスポンスを返す
         try:
             res = subprocess.check_call(cmd.split(), cwd=cwd)
