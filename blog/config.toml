@@ -2,14 +2,14 @@ baseurl = "http://www.if-blog.site"
 languageCode = "en-us"
 title = "アンドロイドは推理小説を描くか?"
 theme= "hugo-theme-geppaku"
-googleAnalytics = "UA-127470627-1"
+googleAnalytics = "UA-127416809-1"
 disqusShortname = ""
 
 [author]
     # If you want to display author information set these
     # This is Optional values
     name = "いふ"
-    onething = "自然言語処理を中心に記事を書いていきます。最終的には、AIに小説を書かせたい。"
+    onething = "自然言語処理を中心に記事を書いていきます。最終的には、AIに小説を書かせたい。コメントはtwitterにお願いします。"
     # Please set account ids
     # This is Optional values
     twitter  = "if_004"
