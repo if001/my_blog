@@ -3,6 +3,8 @@ import falcon
 from falcon.http_error import HTTPError
 import falcon.status_codes as status
 from format_md import CreateMd
+from falcon_multipart.middleware import MultipartMiddleware
+
 import os
 import subprocess
 import base64
@@ -108,15 +110,31 @@ class AddDraftArticle(object):
         resp.body = to_resp(200, "create draft article")
 
 
+@falcon.before(check_token)
+class UploadImage(object):
+    def on_post(self, req, resp):
+        image = req.get_param('file')
+        raw = image.file.read()
+        image_name = image.filename
+        filepath = os.path.join(BASE_DIR, "static", image_name)
+        try:
+            with open(filepath, 'wb') as f:
+                f.write(raw)
+        except IOError:
+            print("save file faild :" + filepath)
+        resp.body = to_resp(200, "save img " + filepath)
+
+
 def handle_404(req, resp):
     resp.body = to_resp(400, "not found end point")
 
 
-app = falcon.API(middleware=[CORSMiddleware()])
+app = falcon.API(middleware=[CORSMiddleware(), MultipartMiddleware()])
 app.add_route("/", HealthCheck())
 app.add_route("/build", Build())
 app.add_route("/article", AddArticle())
 app.add_route("/article/draft", AddDraftArticle())
+app.add_route("/image", UploadImage())
 app.add_sink(handle_404, '')
 
 
