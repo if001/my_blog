@@ -16,6 +16,11 @@ h2 {
   color: black;
 }
 
+h3 {
+    font-size: 18px;
+    color: black;
+}
+
 h2:before {
     position: initial;
     top: initial;
@@ -36,6 +41,15 @@ h2:after {
     content: initial;
 }
 
+h3:before {
+    position: initial;
+    top: initial;
+    left: initial;
+    width: initial;
+    height: initial;
+    border: initial;
+    content: initial;
+}
 h1, h2, h3, h4, h5, h6 {
   margin: 20px 0 10px;
   padding: 0;
