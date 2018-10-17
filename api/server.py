@@ -128,12 +128,17 @@ def handle_404(req, resp):
     resp.body = to_resp(400, "not found end point")
 
 
+def handle_200(req, resp):
+    resp.body = to_resp(200, "ok")
+
+
 app = falcon.API(middleware=[CORSMiddleware(), MultipartMiddleware()])
 app.add_route("/", HealthCheck())
 app.add_route("/build", Build())
 app.add_route("/article", AddArticle())
 app.add_route("/article/draft", AddDraftArticle())
 app.add_route("/image", UploadImage())
+app.add_sink(handle_200, "/.well-known/acme-challenge/.*")
 app.add_sink(handle_404, '')
 
 

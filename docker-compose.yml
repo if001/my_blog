@@ -11,13 +11,23 @@ services:
     command: python3 -u server.py -m prob
     # tty : true
 
-  frontend:
+  hugo-web-server:
     image: nginx:1.15.5-alpine
     ports:
-      - "80:80"
+      - 80:80
     volumes:
       - ./blog/public:/usr/share/nginx/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     tty : true
 
+  # frontend:
+  #   image: nginx:1.15.5-alpine
+  #   ports:
+  #     - "443:443"
+  #   volumes:
+  #     - ./front-nginx/default.conf:/etc/nginx/conf.d/default.conf
+  #     - ./front-nginx/nginx.conf:/etc/nginx/nginx.conf
+  #   tty : true
+  #   links:
+  #     - hugo-web-server
