@@ -25,6 +25,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./front-nginx/index.html:/var/www/letsencrypt/index.html
       - ./front-nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./front-nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./front-nginx/key:/etc/nginx/key
