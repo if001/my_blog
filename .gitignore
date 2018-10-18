@@ -3,3 +3,6 @@ api/__pycache__
 
 blog/content/post/
 !blog/content/post/.gitkeep
+
+front-nginx/key/
+!front-nginx/key/
