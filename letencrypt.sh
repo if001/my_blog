@@ -5,6 +5,9 @@ DOMAIN=www.if-blog.site
 
 #ドキュメントルート（上のドメインで接続可能である必要がある）
 WEBROOT=/var/www/letsencrypt
+if [ ! -e ${WEBROOT} ]; then
+    sudo mkdir -r /var/www/letsencrypt
+fi
 
 #メールアドレス（トラブル時にメールが届く）
 EMAIL=otomijuf.002@gmail.com
