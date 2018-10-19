@@ -19,16 +19,15 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     tty : true
 
-  frontend:
-    image: nginx:1.15.5-alpine
+  https-portal:
+    image: steveltn/https-portal:1.0.0
     ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./front-nginx/index.html:/var/www/letsencrypt/index.html
-      - ./front-nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./front-nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./front-nginx/key:/etc/nginx/key
-    tty : true
+      - '80:80'
+      - '443:443'
     links:
       - hugo-web-server
+    restart: always
+    environment:
+      DOMAINS: 'www.if-blog.site -> http://hugo-web-server:8080'
+      STAGE: 'production'
+      # FORCE_RENEW: 'true'
