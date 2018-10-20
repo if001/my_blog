@@ -58,7 +58,15 @@ h3:before {
     border: initial !important;
     content: initial !important;
 }
-
+h4:before {
+    position: initial !important;
+    top: initial !important;
+    left: initial !important;
+    width: initial !important;
+    height: initial !important;
+    border: initial !important;
+    content: initial !important;
+}
 h1, h2, h3, h4, h5, h6 {
   margin: 20px 0 10px;
   padding: 0;
