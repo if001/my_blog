@@ -9,7 +9,7 @@ disqusShortname = ""
     # If you want to display author information set these
     # This is Optional values
     name = "いふ"
-    onething = "自然言語処理を中心に記事を書いていきます。最終的には、AIに小説を書かせたい。コメントはtwitterにお願いします。"
+    onething = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。コメントはtwitterにお願いします。"
     # Please set account ids
     # This is Optional values
     twitter  = "if_004"
@@ -37,3 +37,6 @@ disqusShortname = ""
         # 2. Please set file path name omitted "layouts/partials"
         # sidebar = "adsense/sidebar.html"
         # content = "adsense/content.html"
+
+[blackfriday]
+   hrefTargetBlank = true
