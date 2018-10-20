@@ -84,13 +84,14 @@ code{
 }
 
 article{
-    margin-top:30px;
-    padding-bottom:30px;
+    /* margin-top:30px; */
+    margin-bottom:60px;
+    padding-bottom:40px;
 }
 
 #pager .pagination .active a{
-    height:13px;
+    height:12px;
 }
 #pager .pagination a{
-    height:13px;
+    height:12px;
 }
