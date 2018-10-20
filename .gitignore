@@ -6,3 +6,7 @@ blog/content/post/
 
 front-nginx/key/
 !front-nginx/key/.gitkeep
+
+https-portal/
+!http-portal/.gitkeep
+

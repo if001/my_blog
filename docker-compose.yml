@@ -20,14 +20,17 @@ services:
     tty : true
 
   https-portal:
-    image: steveltn/https-portal:1.0.0
+    image: steveltn/https-portal:1
     ports:
       - '80:80'
       - '443:443'
+    volumes:
+      - ./https-portal:/var/lib/https-portal
     links:
       - hugo-web-server
     restart: always
     environment:
-      DOMAINS: 'www.if-blog.site -> http://hugo-web-server:8080'
-      STAGE: 'production'
+      DOMAINS: www.if-blog.site -> http://hugo-web-server:8080
+      # STAGE: 'local'
+      STAGE: 'production' 
       # FORCE_RENEW: 'true'
