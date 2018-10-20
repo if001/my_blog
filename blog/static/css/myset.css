@@ -83,8 +83,9 @@ code{
     margin:5px;
 }
 
-article{
+#article-list .article{
     /* margin-top:30px; */
+    margin-bottom:0px;
     margin-bottom:60px;
     padding-bottom:40px;
 }
