@@ -61,26 +61,31 @@
       <ul>
         {{ range $tags, $taxonomy := . }}
 	
-        <li>	  
-	  {{ if and (lt 0 $taxonomy.Count) (le $taxonomy.Count 5) }}
-	  <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: medium;"><span></span> {{ $tags }} </a>
-	  {{end}}
-	  
-	  {{ if and (lt 5 $taxonomy.Count) (le $taxonomy.Count 10) }}
-	  <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: large;"><span></span> {{ $tags }} </a>
-	  {{end}}
-	  
-	  {{ if and (lt 10 $taxonomy.Count) (le $taxonomy.Count 20) }}
-	  <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: large;"><span></span> {{ $tags }} </a>
-	  {{end}}
-	  
-	  {{ if and (lt 20 $taxonomy.Count) }}
-	  <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: xx-large;"><span></span>{{ $tags }}</a>
-	  {{end}}
+          <li>
 
-        </li>
+	      {{ if and (lt 0 $taxonomy.Count) (le $taxonomy.Count 1) }}
+	      <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: medium;"><span></span> {{ $tags }} </a>
+	      {{end}}
+	      
+	      {{ if and (lt 1 $taxonomy.Count) (le $taxonomy.Count 5) }}
+	      <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: large;"><span></span> {{ $tags }} </a>
+	      {{end}}
+	  
+	      {{ if and (lt 5 $taxonomy.Count) (le $taxonomy.Count 10) }}
+	      <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: x-large;"><span></span> {{ $tags }} </a>
+	      {{end}}
+	  
+	      {{ if and (lt 10 $taxonomy.Count) (le $taxonomy.Count 20) }}
+	      <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: xx-large;"><span></span> {{ $tags }} </a>
+	      {{end}}
+	  
+	      {{ if and (lt 20 $taxonomy.Count) }}
+	      <a href="{{ "/tags/" | absURL }}{{ $tags | urlize }}/" style="font-size: xx-large;"><span></span>{{ $tags }}</a>
+	      {{end}}
+
+          </li>
 	
-        {{ end }}
+          {{ end }}
       </ul>
     </div>
   </div>
