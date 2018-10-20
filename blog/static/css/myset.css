@@ -87,3 +87,10 @@ article{
     margin-top:30px;
     padding-bottom:30px;
 }
+
+#pager .pagination .active a{
+    height:13px;
+}
+#pager .pagination a{
+    height:13px;
+}
