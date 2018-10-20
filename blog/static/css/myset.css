@@ -1,5 +1,5 @@
 body{
-    font-size:15px;
+    font-size:14px;
 }
 title-img{
     width:100%;
@@ -15,6 +15,7 @@ title-img{
 
 h1 {
   font-size: 28px;
+  border-bottom: 2px double #cccccc;
   color: black;
 }
 
