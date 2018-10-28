@@ -1,7 +1,7 @@
 baseurl = "http://www.if-blog.site"
 languageCode = "en-us"
 title = "アンドロイドは推理小説を描くか?"
-theme= "hugo-theme-geppaku"
+theme = "hugo-theme-geppaku"
 googleAnalytics = "UA-127416809-1"
 disqusShortname = ""
 # descriptionのsummaryを小さくする
