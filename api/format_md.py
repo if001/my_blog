@@ -14,11 +14,12 @@ draft = {}
 title = \"{}\"
 slug = \"{}\"
 tags = {}
-{}""".format(header_prefix, time, draft, title, slug, tags, header_prefix)
+description = \"{}\"
+{}""".format(header_prefix, time, draft, title, slug, tags, description, header_prefix)
         return h
 
-    def format(self, time, draft, title, slug, tags_str, body):
-        header = self.__header(time, draft, title, slug, tags_str)
+    def format(self, time, draft, title, slug, tags_str, description,body):
+        header = self.__header(time, draft, title, slug, description ,tags_str)
         return header + "\n" + body
 
 
@@ -47,7 +48,7 @@ class CreateMd():
             os.remove(md_path)
             print("remove " + md_path)
 
-    def create(self, title, slug, tags, body, draft):
+    def create(self, title, slug, tags, description, body, draft):
         now = datetime.datetime.now()
         # 日付からディレクトリを生成
         md_dir = os.path.join(
@@ -57,7 +58,7 @@ class CreateMd():
         # slug = self.__to_slug(title)
         md_file_name = slug + ".md"
 
-        md_str = FormatMd().format(now, draft, title, slug, tags, body)
+        md_str = FormatMd().format(now, draft, title, slug, tags, description, body)
         print("md_str:", md_str.encode('utf-8'))
 
         # mdの作成

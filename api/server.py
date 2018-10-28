@@ -79,8 +79,9 @@ def article_article_parse(req):
     title = data['title']
     slug = data['slug']
     tags = data['tags']
+    description = data['description']
     article_body = data['body']
-    return title, slug, tags, article_body
+    return title, slug, tags, description, article_body
 
 
 def to_array(st):
@@ -94,10 +95,10 @@ def to_array(st):
 @falcon.before(check_token)
 class AddArticle(object):
     def on_post(self, req, resp):
-        title, slug, tags, body = article_article_parse(req)
+        title, slug, tags, description, body = article_article_parse(req)
         # todo tagのフォーマットが間違っていたら、エラーリスポンスを返す
         tags_str = to_array(tags)
-        CREATEMD.create(title, slug, tags_str, body, draft="false")
+        CREATEMD.create(title, slug, tags_str, description,body, draft="false")
         resp.body = to_resp(200, "create article")
 
 
