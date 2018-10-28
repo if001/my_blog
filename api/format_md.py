@@ -19,6 +19,9 @@ description = \"{}\"
         return h
 
     def format(self, time, draft, title, slug, tags_str, description,body):
+        # todo descriptionに改行を含められないので、ここで取り除いてるけど責任を分けられてない感
+        while("\n" in description):
+            description = description.replace("\n","")
         header = self.__header(time, draft, title, slug, description ,tags_str)
         return header + "\n" + body
 
