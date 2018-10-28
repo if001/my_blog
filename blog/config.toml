@@ -4,6 +4,8 @@ title = "アンドロイドは推理小説を描くか?"
 theme= "hugo-theme-geppaku"
 googleAnalytics = "UA-127416809-1"
 disqusShortname = ""
+# descriptionのsummaryを小さくする
+hasCJKLanguage = true
 
 [author]
     # If you want to display author information set these
