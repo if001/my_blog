@@ -98,7 +98,7 @@ class AddArticle(object):
         title, slug, tags, description, body = article_article_parse(req)
         # todo tagのフォーマットが間違っていたら、エラーリスポンスを返す
         tags_str = to_array(tags)
-        CREATEMD.create(title, slug, tags_str, description,body, draft="false")
+        CREATEMD.create(title, slug, tags_str, description, body, draft="false")
         resp.body = to_resp(200, "create article")
 
 
