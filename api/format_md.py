@@ -6,7 +6,7 @@ from conf import Conf
 
 
 class FormatMd():
-    def __header(self, time, draft, title, slug, tags):
+    def __header(self, time, draft, title, slug, description, tags):
         header_prefix = "+++"
         h = """{}
 date = \"{}\"
@@ -15,6 +15,7 @@ title = \"{}\"
 slug = \"{}\"
 tags = {}
 description = \"{}\"
++++
 {}""".format(header_prefix, time, draft, title, slug, tags, description, header_prefix)
         return h
 
@@ -59,7 +60,7 @@ class CreateMd():
         md_file_name = slug + ".md"
 
         md_str = FormatMd().format(now, draft, title, slug, tags, description, body)
-        print("md_str:", md_str.encode('utf-8'))
+        # print("md_str:", md_str.encode('utf-8'))
 
         # mdの作成
         self.befor_create(self.__dirStr(now), md_file_name)
