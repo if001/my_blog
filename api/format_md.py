@@ -15,7 +15,6 @@ title = \"{}\"
 slug = \"{}\"
 tags = {}
 description = \"{}\"
-+++
 {}""".format(header_prefix, time, draft, title, slug, tags, description, header_prefix)
         return h
 
