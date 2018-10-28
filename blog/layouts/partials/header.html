@@ -2,8 +2,7 @@
 <html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-
+    <meta name="viewport" content="width=device-width,initial-scale=1">    
     {{ if .IsHome }}
     {{ with .Site.Params.description -}}
     <meta name="description" content="{{ . }}">
@@ -49,6 +48,8 @@
     <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
   </head>
   <body>
+      {{ .IsHome }}
+      {{ .Site }}
     <div id="wrap">
       {{ template "_internal/google_analytics.html" . }}
       <header class="site-header-myset">
