@@ -6,6 +6,7 @@ googleAnalytics = "UA-127416809-1"
 disqusShortname = ""
 # descriptionのsummaryを小さくする
 hasCJKLanguage = true
+description = "自然言語処理を中心に技術系の記事を書いていきます。最終的には、AIに推理小説を書かせたい。普段はフロント/バックエンド開発。主に使うのは、scala、angular、python、keras"
 
 [author]
     # If you want to display author information set these
