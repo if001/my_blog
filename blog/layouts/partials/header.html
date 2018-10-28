@@ -9,10 +9,10 @@
     {{ end }}
     {{ end }}
 
-    {{ if .Description }}
-    <meta name="description" content="{{ .Description }}">
-    {{ else }}
+    {{ if eq .Description "" }}
     <meta name="description" content="{{substr .Summary 0 300}}">
+    {{ else }}
+    <meta name="description" content="{{ .Description }}">
     {{ end }}
 
     <!--     {{ .Hugo.Generator }} バージョン消す -->
