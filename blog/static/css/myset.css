@@ -1,10 +1,18 @@
 body{
-    font-size:14px;
+    font-size:16px;
 }
 title-img{
     width:100%;
     max-width:100%;
     height:auto;
+}
+
+.container{
+    width:1200px;
+}
+
+.article{
+    width:741px;
 }
 
 .site-header-myset {
