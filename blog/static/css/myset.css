@@ -20,6 +20,9 @@ title-img{
   height: 200px;
   margin-bottom: 40px;
 }
+.site-header-left{
+    width:1200px;
+}
 
 h1 {
   font-size: 28px;
