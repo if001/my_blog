@@ -100,6 +100,10 @@ code{
     margin-bottom:60px;
     padding-bottom:40px;
 }
+#article-list h2{
+    font-size:20px;
+}
+
 
 #pager .pagination .active a{
     height:12px;
